@@ -8,6 +8,7 @@ public class Sale {
         super();
         this.cant = cant;
         this.product = product;
+        product.setStock(product.getStock() - cant);
     }
 
     public double getCant() {

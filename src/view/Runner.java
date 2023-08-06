@@ -2,8 +2,6 @@ package view;
 
 import model.ETypeProduct;
 import model.Product;
-import model.Sale;
-import model.ServiceSale;
 import presenter.Presenter;
 
 import java.util.Scanner;
@@ -11,7 +9,7 @@ import java.util.Scanner;
 public class Runner {
     private static Presenter presenter;
 
-    public static void main (String [] args) {
+    public static void main(String[] args){
         presenter = new Presenter();
         int addBuy;
         do {
@@ -31,51 +29,66 @@ public class Runner {
 
             switch (opcion) {
                 case 1:
-                    System.out.println("Enter the amount you want to buy: ");
-                    int cant1 = sc.nextInt();
-                    presenter.addSale("Acetaminophen", 15000, 50, false, ETypeProduct.MEDICINAS, cant1);
-                    System.out.println(presenter.showSale());
+                    Runner.addProduct(presenter.acetaminophen, sc);
                     break;
 
                 case 2:
-                    System.out.println("Enter the amount you want to buy: ");
-                    int cant2 = sc.nextInt();
-                    presenter.addSale("Ron", 50000, 30, false, ETypeProduct.MEDICINAS, cant2);
-
-                    System.out.println(presenter.showSale());
-
+                    Runner.addProduct(presenter.ron, sc);
                     break;
                 case 3:
-                    Product soap = new Product("Soap", 2000, 60, true, ETypeProduct.ASEO);
                     System.out.println("Enter the amount you want to buy: ");
                     int cant3 = sc.nextInt();
-                    presenter.addSale("Soap", 2000, 60, true, ETypeProduct.ASEO, cant3);
-                    System.out.println(presenter.showSale());
-
+                    try {
+                        presenter.addSale("Soap", 2000, 60, true, ETypeProduct.ASEO, cant3);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
                     break;
                 case 4:
                     System.out.println("Enter the amount you want to buy: ");
                     int cant4 = sc.nextInt();
-                    presenter.addSale("Shampoo", 20000, 60, true, ETypeProduct.ASEO, cant4);
-                    System.out.println(presenter.showSale());
+                    try {
+                        presenter.addSale("Shampoo", 20000, 60, true, ETypeProduct.ASEO, cant4);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
 
                     break;
                 case 5:
                     System.out.println("Enter the amount you want to buy: ");
                     int cant5 = sc.nextInt();
-                    presenter.addSale("Cornmeal", 4000, 50, true, ETypeProduct.VIVERES, cant5);
-                    System.out.println(presenter.showSale());
+                    try {
+                        presenter.addSale("Cornmeal", 4000, 50, true, ETypeProduct.VIVERES, cant5);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
 
                     break;
 
                 default:
                     System.out.println("The entered value is not valid ");
             }
+
+            System.out.println(presenter.showSale());
+
             System.out.println("Want to add another purchase, type 1. Yes, or 2. Not");
 
             addBuy = sc.nextInt();
-
-
         } while (addBuy == 1);
+    }
+
+    private static void addProduct(Product product, Scanner sc) {
+        System.out.println(product.toString());
+        System.out.println("You want to add the product for sale, type 1. Yes or 2.Not");
+        int addProduct = sc.nextInt();
+        if (addProduct == 1) {
+            System.out.println("Enter the amount you want to buy: ");
+            int cant1 = sc.nextInt();
+            try {
+                presenter.addSale(product.getName(), product.getValue(), product.getStock(), product.isIva(), product.getTypeProduct(), cant1);
+            } catch (Exception e) {
+                System.err.println("there is not enough quantity");
+            }
+        }
     }
 }
