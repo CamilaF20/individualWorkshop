@@ -12,12 +12,10 @@ public class ServiceSale {
             this.sale = new Sale(this.cant, this.product);
         }
         else {
-            throw new Exception("Icorrect value");
+            throw new Exception(" Value incorrect");
         }
 
     }
-//xepcion cuando la cantidad es mayor al estock
-
     public Product getProduct() {
 
         return product;

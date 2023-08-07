@@ -8,13 +8,18 @@ public class SaleTest {
     private Sale sale;
     Product soap;
     Product vodka;
-    Product acetaminofen;
+    Product acetaminophen;
 
     @Before
     public void setUp(){
     soap = new Product("Soap", 2000, 30, true, ETypeProduct.ASEO);
     vodka = new Product("Vodka", 80000,40, true, ETypeProduct.LICORES);
-    acetaminofen = new Product("Acetaminophen", 15000, 35, true, ETypeProduct.MEDICINAS);
+    acetaminophen = new Product("Acetaminophen", 15000, 35, true, ETypeProduct.MEDICINAS);
+    }
+    @Test
+    public void testStock(){
+        sale = new Sale(20, soap);
+        assertEquals(10, soap.getStock(), 0.1);
     }
     @Test
     public void testCalcDiscount(){

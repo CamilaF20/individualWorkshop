@@ -65,7 +65,6 @@ public class Product {
                 ", value=" + value +
                 ", stock=" + stock +
                 ", iva=" + iva +
-                ", STOCK_MIN=" + STOCK_MIN +
                 '}';
     }
 }

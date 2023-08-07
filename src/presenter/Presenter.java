@@ -8,12 +8,15 @@ import model.ServiceSale;
 import java.util.ArrayList;
 
 public class Presenter {
+    public Sale sale;
     private ArrayList<ServiceSale> serviceSales;
     public Product acetaminophen = new Product("Acetaminophen", 15000, 50, false, ETypeProduct.MEDICINAS);
-    public Product ron = new Product("Ron", 50000, 30, false, ETypeProduct.LICORES);
-
+    public Product ron = new Product("Ron", 50000, 30, true, ETypeProduct.LICORES);
+    public Product soap = new Product("Soap", 2000, 40, true, ETypeProduct.ASEO);
+    public Product shampoo = new Product("Shampoo", 20000, 20, true, ETypeProduct.ASEO);
+    public Product cornmeal = new Product("Cornmeal", 3000, 30, true,ETypeProduct.VIVERES);
     public Presenter() {
-        serviceSales = new ArrayList<>();
+        serviceSales = new ArrayList<ServiceSale>();
     }
 
 
@@ -24,15 +27,23 @@ public class Presenter {
         if(name.equals(ron.getName())){
             this.serviceSales.add(new ServiceSale(ron, cant));
         }
+        if(name.equals(soap.getName())) {
+            this.serviceSales.add(new ServiceSale(soap, cant));
+        }
+        if(name.equals(shampoo.getName())) {
+            this.serviceSales.add(new ServiceSale(shampoo, cant));
+        }
+        if(name.equals(cornmeal.getName())) {
+            this.serviceSales.add(new ServiceSale(cornmeal, cant));
+        }
 
         double valueSale = 0;
         for (ServiceSale serviceSale : this.serviceSales) {
             valueSale += serviceSale.getProduct().getValue() * serviceSale.getCant();
-        }
-        return valueSale;
-        //Llega el Produsc
-        //Llega la cantidad
 
+        }
+
+        return valueSale;
     }
 
     public String showSale() {

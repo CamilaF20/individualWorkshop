@@ -35,34 +35,17 @@ public class Runner {
                 case 2:
                     Runner.addProduct(presenter.ron, sc);
                     break;
+
                 case 3:
-                    System.out.println("Enter the amount you want to buy: ");
-                    int cant3 = sc.nextInt();
-                    try {
-                        presenter.addSale("Soap", 2000, 60, true, ETypeProduct.ASEO, cant3);
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
-                    }
+                    Runner.addProduct(presenter.soap, sc);
                     break;
+
                 case 4:
-                    System.out.println("Enter the amount you want to buy: ");
-                    int cant4 = sc.nextInt();
-                    try {
-                        presenter.addSale("Shampoo", 20000, 60, true, ETypeProduct.ASEO, cant4);
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
-                    }
-
+                    Runner.addProduct(presenter.shampoo, sc);
                     break;
-                case 5:
-                    System.out.println("Enter the amount you want to buy: ");
-                    int cant5 = sc.nextInt();
-                    try {
-                        presenter.addSale("Cornmeal", 4000, 50, true, ETypeProduct.VIVERES, cant5);
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
-                    }
 
+                case 5:
+                    Runner.addProduct(presenter.cornmeal, sc);
                     break;
 
                 default:
